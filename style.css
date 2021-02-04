@@ -2,15 +2,24 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+body{
+    margin: 0px;
+    padding: 0px;
+}
+
 input, textarea, select{
     display: block;
     margin: 8px auto;
-    padding: 7px 30px;
     font-size: 12pt;
     text-align: center;
     border-radius: 5px;
     border: none;
 }
+
+input,select{
+    padding: 10px 30px;
+}
+
 
 input, textarea, select:focus{
     outline: none;
@@ -25,6 +34,14 @@ form{
     color: white;
     animation-name: fadein;
     animation-duration: .6s;
+}
+
+form#aut{
+    margin: 200px auto 0 auto;
+}
+
+form#vaga{
+    margin: 100px auto 0 auto;
 }
 
 p{
@@ -56,6 +73,11 @@ form.validate-error{
     animation: nono 300ms;
 }
 
+form.validate-accept{
+    animation: hiddenaut 500ms;
+    animation-fill-mode: forwards;
+}
+
 @keyframes nono{
     0%{
         transform: translateX(0);
@@ -68,5 +90,41 @@ form.validate-error{
     }
     100%{
         transform: translateX(0);
+    }
+}
+
+@keyframes hiddenaut{
+    0%{
+        transform: translateY(0);
+    }50%{
+        transform: translateY(-10vh);
+    }100%{
+        transform: translateY(100vh);
+    }
+}
+
+@media(max-width: 360px){
+
+    input{
+        width: 70%;
+        margin: auto;
+    }
+
+    select, textarea{
+        width: 99%;
+    }
+
+    form{
+        max-height: 70vh;
+        max-width: 70%;
+        border-radius: 10px;
+    }
+
+    form#aut{
+        margin: 200px auto;
+    }
+
+    form#vaga{
+        margin: 70px auto;
     }
 }
