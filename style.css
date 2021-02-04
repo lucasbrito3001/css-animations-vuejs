@@ -1,0 +1,72 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+input, textarea, select{
+    display: block;
+    margin: 8px auto;
+    padding: 7px 30px;
+    font-size: 12pt;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+}
+
+input, textarea, select:focus{
+    outline: none;
+}
+
+form{
+    width: 320px;
+    margin: 200px auto 0 auto;
+    background-color: rgb(70, 0, 70);
+    padding: 30px 10px;
+    border-radius: 10px;
+    color: white;
+    animation-name: fadein;
+    animation-duration: .6s;
+}
+
+p{
+    width: 80%;
+    text-align: left;
+    margin: 20px auto;
+}
+
+#botao{
+    font-weight: bold;
+    color: rgb(70, 0, 70);
+}
+
+label{
+    font-weight: bold;
+}
+
+@keyframes fadein{
+    from{
+        opacity: 0;
+        transform: scale(0.8);
+    }to{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+form.validate-error{
+    animation: nono 300ms;
+}
+
+@keyframes nono{
+    0%{
+        transform: translateX(0);
+    }
+    35%{
+        transform: translateX(-15%);
+    }
+    70%{
+    transform: translateX(15%);
+    }
+    100%{
+        transform: translateX(0);
+    }
+}

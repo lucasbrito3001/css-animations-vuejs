@@ -1,2 +1,2 @@
-# css-animations-vuejs
- treinando VueJS e CSSanimations
+# css-animation
+ projeto para treinar vue.js, css animations e versionamento git

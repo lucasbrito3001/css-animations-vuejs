@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animações em Formulário</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="screen"></div>
+    <div class="container">
+        <!-- <div class="autenticar">
+            <form action="">
+                <fieldset><legend>Teste de Login</legend>
+                    <p>
+                        <label for="nameLogin">Login: 
+                            <input type="text" id="nameLogin">
+                        </label>
+                    </p>
+    
+                    <p>
+                        <label for="mailSenha">Senha: 
+                            <input type="password" id="mailSenha">
+                        </label>
+                    </p>
+                </fieldset>
+            </form>
+        </div> -->
+
+        <!-- <form action="mail.php">
+            <fieldset><legend>Teste de Formulário</legend>
+                <p>
+                    <label for="namePessoa">Nome: 
+                        <input type="text" id="namePessoa">
+                    </label>
+                </p>
+
+                <p>
+                    <label for="selectLogin">Selecione a Vaga:
+                        <select name="select" id="selectLogin">
+                            <option value="frontJr">Dev. Front End Jr.</option>
+                            <option value="frontPl">Dev. Front End Pleno</option>
+                            <option value="frontSr">Dev. Front End Sênior</option>
+                        </select>
+                    </label>
+                </p>
+                
+                <p>
+                    <label for="msgLogin">Introdução: 
+                        <textarea id="msgLogin" cols="30" rows="10"></textarea>
+                    </label>
+                </p>
+            </fieldset>
+        </form> -->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        Vue.component('autenticar',{
+            template: `
+            <div class="autenticar">
+                <form action="" v-on:animationend="removerClasse">
+                    <p>
+                        <label for="nameLogin">Login: 
+                            <input type="text" id="nameLogin" placeholder="Login" class="camposVerif" v-model='nome'>
+                        </label>
+                    </p>
+    
+                    <p>
+                        <label for="mailSenha">Senha: 
+                            <input type="password" id="mailSenha" placeholder="Senha" class="camposVerif" v-model='senha'>
+                        </label>
+                    </p>
+
+                    <p>
+                        <input type="button" id="botao" value="Login" v-on:click="clicar">
+                    </p>
+                </form>
+            </div>
+            `,
+
+            data(){
+                return{
+                    nome: '',
+                    senha: ''
+                }
+            },
+
+            methods: {
+                clicar(evento){
+                    const form = document.querySelector("form")
+                    const fields = [...document.querySelectorAll('.camposVerif')]
+
+                    fields.forEach(field =>{
+                        if(field.value == ''){
+                            form.classList.add('validate-error')
+                            this.nome = ''
+                            this.senha = ''
+                        }
+                    })
+                    
+                },
+
+                removerClasse(){
+                    const endAnimation = document.querySelector('.validate-error')
+                    if(event.animationName == 'nono'){
+                        endAnimation.classList.remove('validate-error')
+
+                    }
+                }
+            }
+        })
+
+        Vue.component('forms',{
+            template: `
+            <div class="formulario">
+                <form action="mail.php">
+                    <p>
+                        <label for="namePessoa">Nome: 
+                            <input type="text" id="namePessoa">
+                        </label>
+                    </p>
+
+                    <p>
+                        <label for="selectLogin">Selecione a Vaga:
+                            <select name="select" id="selectLogin">
+                                <option value="frontJr">Dev. Front End Jr.</option>
+                                <option value="frontPl">Dev. Front End Pleno</option>
+                                <option value="frontSr">Dev. Front End Sênior</option>
+                            </select>
+                        </label>
+                    </p>
+                    
+                    <p>
+                        <label for="msgLogin">Introdução: 
+                            <textarea id="msgLogin" cols="30" rows="10"></textarea>
+                        </label>
+                    </p>
+                </form>
+            </div>
+            `
+        })
+
+        var autenticacao = new Vue({
+            el: '#screen',
+            template: `
+                <div class="container">
+                        <autenticar v-if="aut"></autenticar>
+                        <forms v-if="form"></forms>   
+                </div>
+                
+            `,
+            data(){
+                return{
+                    aut: true,
+                    form: false,
+                }
+            }
+            
+        })
+    </script>
+</body>
+</html>
